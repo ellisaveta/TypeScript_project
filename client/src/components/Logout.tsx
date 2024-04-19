@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserPreferences } from "../contexts/UserPreferencesContext";
-import { authService } from "../sevices/auth";
+import { authService } from "../services/auth";
 import { Button } from "./Button";
 
 export function Logout() {

@@ -1,8 +1,8 @@
 import { FormEvent, useState } from "react";
 import { useAsyncAction } from "../hooks/useAsyncAction";
 import { fieldErrors } from "../lib/FieldError";
-import { InputError } from "../sevices/http";
-import { moviesService } from "../sevices/movies";
+import { InputError } from "../services/http";
+import { moviesService } from "../services/movies";
 import { Button } from "./Button";
 import { Input } from "./Input";
 import classes from "./AddComment.module.css";

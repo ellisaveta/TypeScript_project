@@ -5,8 +5,8 @@ import { FormLayout } from "../layouts/FormLayout";
 import { Input } from "../components/Input";
 import { useAsyncAction } from "../hooks/useAsyncAction";
 import { fieldErrors } from "../lib/FieldError";
-import { authService } from "../sevices/auth";
-import { EmailAlreadyExists, HttpError, InputError } from "../sevices/http";
+import { authService } from "../services/auth";
+import { EmailAlreadyExists, HttpError, InputError } from "../services/http";
 import classes from "./Registration.module.css";
 
 export function Registration() {

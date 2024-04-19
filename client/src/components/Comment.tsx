@@ -1,4 +1,4 @@
-import { CommentModel } from "../sevices/movies";
+import { CommentModel } from "../services/movies";
 import classes from "./Comment.module.css";
 
 interface CommentProps {

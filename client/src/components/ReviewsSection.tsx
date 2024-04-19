@@ -1,4 +1,4 @@
-import { MovieModel } from "../sevices/movies";
+import { MovieModel } from "../services/movies";
 import { Review } from "./Review";
 import classes from "./ReviewsSection.module.css";
 

@@ -1,9 +1,9 @@
-import { InputError } from "../sevices/http"
+import { InputError } from "../services/http";
 
 export function fieldErrors(error: unknown, fieldName: string) {
-    if (!(error instanceof InputError)) {
-        return;
-    }
+  if (!(error instanceof InputError)) {
+    return;
+  }
 
-    return error.fieldErrors[fieldName];
+  return error.fieldErrors[fieldName];
 }

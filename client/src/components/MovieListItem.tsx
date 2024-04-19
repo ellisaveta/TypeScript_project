@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { MovieModel } from "../sevices/movies";
+import { MovieModel } from "../services/movies";
 import { Button } from "./Button";
 import classes from "./MovieListItem.module.css";
 

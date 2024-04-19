@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { Button } from "./Button";
 import classes from "./AddLike.module.css";
 import { useAsyncAction } from "../hooks/useAsyncAction";
-import { MovieModel, moviesService } from "../sevices/movies";
+import { MovieModel, moviesService } from "../services/movies";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 interface AddLikeProps {

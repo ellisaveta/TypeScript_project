@@ -1,13 +1,13 @@
 import { useParams } from "react-router";
 import { useAsync } from "../hooks/useAsync";
-import { moviesService } from "../sevices/movies";
+import { moviesService } from "../services/movies";
 import classes from "../pages/MovieDetails.module.css";
 import { Likes } from "../components/Likes";
 import { CommentsSection } from "../components/CommentsSection";
 import { ReviewsSection } from "../components/ReviewsSection";
 import { AddComment } from "../components/AddComment";
 import { AddLike } from "../components/AddLike";
-import { HttpError } from "../sevices/http";
+import { HttpError } from "../services/http";
 
 
 export function MovieDetails() {

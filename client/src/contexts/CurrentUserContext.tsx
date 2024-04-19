@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
-import { UserInfo, userInfoStorage } from "../sevices/userInfoStorage";
+import { UserInfo, userInfoStorage } from "../services/userInfoStorage";
 
 const CurrentUserContext = createContext<UserInfo | undefined>(undefined)
 

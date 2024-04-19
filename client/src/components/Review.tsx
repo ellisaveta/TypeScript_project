@@ -1,4 +1,4 @@
-import { ReviewModel } from "../sevices/movies";
+import { ReviewModel } from "../services/movies";
 import classes from "./Review.module.css";
 
 interface ReviewProps {

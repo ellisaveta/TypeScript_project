@@ -3,7 +3,7 @@ import { GridMoviesView } from "../components/GridMoviesView";
 import { useAsync } from "../hooks/useAsync";
 import { ListMoviesView } from "../components/ListMoviesView";
 import classes from "./MoviesLibrary.module.css"
-import { MovieModel, moviesService } from "../sevices/movies";
+import { MovieModel, moviesService } from "../services/movies";
 import { useSearchParams } from "react-router-dom";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";

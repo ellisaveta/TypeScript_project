@@ -5,7 +5,7 @@ import { Button } from "../components/Button";
 import { FormLayout } from "../layouts/FormLayout";
 import { Input } from "../components/Input";
 import { useAsyncAction } from "../hooks/useAsyncAction";
-import { authService, InvalidCredentialsError } from "../sevices/auth";
+import { authService, InvalidCredentialsError } from "../services/auth";
 
 import classes from "./Login.module.css";
 

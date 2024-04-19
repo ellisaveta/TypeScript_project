@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MovieModel } from '../sevices/movies';
+import { MovieModel } from '../services/movies';
 import classes from './MovieGridBox.module.css';
 
 interface MovieGridBoxProps {
