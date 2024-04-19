@@ -1,0 +1,46 @@
+html,
+body {
+    padding: 0px;
+    margin: 0px;
+    background-color: var(--primary-color-text);
+    font-family: 'IBM Plex Serif', serif;
+}
+
+body.light,
+body {
+    --primary-color: #187452;
+    --primary-color-100: #0b845858;
+    --primary-color-text: #fffaee;
+    --primary-color-600: #096c47;
+    --primary-color-800: #20543a;
+
+    --secondary-color-100: #fffaee;
+    --secondary-color: gray;
+
+    --accent-color: #ffc720;
+    --accent-color-200: #ffbe00;
+    --accent-color-700: #c89500;
+    --accent-color-text: black;
+    --main-text-color: #373331;
+
+    --errors-color: red;
+}
+
+body.dark {
+    --primary-color: #15bb7d;
+    --primary-color-100: #0fa16b76;
+    --primary-color-600: #096c47;
+    --primary-color-800: #20543a;
+    --primary-color-text: #373331;
+
+    --secondary-color-100: #373331;
+    --secondary-color: gray;
+
+    --accent-color: #ffc720;
+    --accent-color-200: #ffbe00;
+    --accent-color-700: #c89500;
+    --accent-color-text: black;
+    --main-text-color: #fbfad3;
+
+    --errors-color: red;
+}

@@ -1,0 +1,8 @@
+.checkbox {
+    background-color: var(--primary-color-text);
+    accent-color: var(--accent-color);
+    width: 20px;
+    height: 20px;
+    border-radius: 20vh;
+    border: 1px var(--accent-color-700) solid;
+}

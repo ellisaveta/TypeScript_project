@@ -1,0 +1,27 @@
+.form {
+    display: grid;
+    padding: 10px;
+    align-items: center;
+    justify-items: center;
+    gap: 20px;
+}
+
+.group {
+    justify-self: end;
+    display: flex;
+}
+
+.label {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.loginRedirect {
+    display: flex;
+    align-items: center;
+}
+
+.errorMessage {
+    color: var(--errors-color);
+    font-size: 20px;
+}

@@ -1,0 +1,32 @@
+.root {
+    border-bottom: 1px var(--primary-color-600) solid;
+    margin: 5px 15px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 50px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.image {
+    width: 35px;
+    height: 30px;
+}
+
+.name {
+    margin: 0px;
+}
+
+.content {
+    padding-left: 20px;
+    font-size: 18px;
+}

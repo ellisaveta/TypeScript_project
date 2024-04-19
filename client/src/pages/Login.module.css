@@ -1,0 +1,30 @@
+.form {
+    display: grid;
+    padding: 10px;
+    align-items: center;
+    justify-items: center;
+    gap: 20px;
+}
+
+.group {
+    display: flex;
+}
+
+.group:first-of-type {
+    justify-self: end;
+}
+
+.label {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.errorMessage {
+    color: var(--errors-color);
+    font-size: 20px;
+}
+
+.signUpRedirect {
+    display: flex;
+    align-items: center;
+}

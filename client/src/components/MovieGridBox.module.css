@@ -1,0 +1,16 @@
+a {
+    text-decoration: none;
+}
+
+.card {
+    border: 1px var(--primary-color-600) solid;
+    color: var(--main-text-color);
+    padding-left: 10px;
+    padding-bottom: 10px;
+    min-height: 200px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+}
