@@ -1,36 +1,35 @@
 import type { Knex } from "knex";
-import { knexSnakeCaseMappers } from 'objection';
+import { knexSnakeCaseMappers } from "objection";
 import { config } from "./src/config";
 
 const knexConfig: { [key: string]: Knex.Config } = {
   development: {
     client: "postgresql",
-    connection: config.get('db'),
+    connection: config.get("db"),
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      tableName: "knex_migrations"
+      tableName: "knex_migrations",
     },
-    ...knexSnakeCaseMappers()
+    ...knexSnakeCaseMappers(),
   },
   test: {
     client: "postgresql",
     connection: {
       ...config.get("db"),
-      database: config.get("db.testDatabase")
+      database: config.get("db.testDatabase"),
     },
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      tableName: "knex_migrations"
+      tableName: "knex_migrations",
     },
-    ...knexSnakeCaseMappers()
+    ...knexSnakeCaseMappers(),
   },
-
 };
 
 export default knexConfig;

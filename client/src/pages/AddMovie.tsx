@@ -15,7 +15,7 @@ import { UserRole } from "../services/userInfoStorage";
 
 export function AddMovie() {
   const [input, setInput] = useState<InputMovieModel>({
-    title: "",
+    title: undefined,
     director: undefined,
     mainStar: undefined,
     description: undefined,
@@ -38,7 +38,7 @@ export function AddMovie() {
       const movie = await moviesService.addMovie(input);
 
       setInput({
-        title: "",
+        title: undefined,
         director: undefined,
         mainStar: undefined,
         description: undefined,
@@ -64,7 +64,7 @@ export function AddMovie() {
             type="text"
             id="title"
             errors={fieldErrors(error, "title")}
-            value={input.title}
+            value={input.title ?? ""}
             onChange={(value) => setInput({ ...input, title: value })}
           />
         </div>

@@ -1,30 +1,30 @@
 .likeButton,
 .likedButton {
-    align-self: flex-start;
-    margin-left: 15px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  align-self: flex-start;
+  margin-left: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .emptyHeart {
-    width: 30px;
+  width: 30px;
 }
 
 .fullHeart {
-    display: none;
-    width: 30px;
+  display: none;
+  width: 30px;
 }
 
 .likedButton .emptyHeart {
-    display: none;
+  display: none;
 }
 
 .likedButton .fullHeart {
-    display: inline;
+  display: inline;
 }
 
 .errorLabel {
-    color: var(--errors-color);
-    font-size: 20px;
+  color: var(--errors-color);
+  font-size: 20px;
 }

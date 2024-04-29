@@ -2,14 +2,19 @@ import { DependencyList, useEffect, useState } from "react";
 import { useAsyncAction } from "./useAsyncAction";
 
 export function useAsync<T>(
-    action: () => Promise<T>,
-    dependencies: DependencyList
+  action: () => Promise<T>,
+  dependencies: DependencyList
 ) {
-    const { trigger, data, loading, error } = useAsyncAction(action, { loading: true });
+  const { trigger, data, loading, error } = useAsyncAction(action, {
+    loading: true,
+  });
 
-    useEffect(trigger, dependencies);
+  useEffect(trigger, dependencies);
 
-    return {
-        data, loading, error, reload: trigger
-    };
+  return {
+    data,
+    loading,
+    error,
+    reload: trigger,
+  };
 }

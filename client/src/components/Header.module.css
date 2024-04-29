@@ -1,36 +1,36 @@
 .header,
 .logo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--primary-color-text);
-    background-color: var(--primary-color);
-    border: 2px var(--primary-color-600) solid;
-    padding: 0px 20px 0px 50px;
-    height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--primary-color-text);
+  background-color: var(--primary-color);
+  border: 2px var(--primary-color-600) solid;
+  padding: 0px 20px 0px 50px;
+  height: 60px;
 }
 
 .logo {
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 40px;
-    border: none;
-    margin: 0px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 40px;
+  border: none;
+  margin: 0px;
 }
 
 .userSection {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
 }
 
 .themeSelection {
-    align-self: flex-end;
-    padding-bottom: 5px;
+  align-self: flex-end;
+  padding-bottom: 5px;
 }
 
 .user {
-    font-size: 30px;
-    margin: 0px;
+  font-size: 30px;
+  margin: 0px;
 }

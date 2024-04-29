@@ -3,7 +3,7 @@ import { UserModel } from "./auth";
 import { HttpService } from "./http";
 
 export interface InputMovieModel {
-  title: string;
+  title?: string;
   director?: string;
   mainStar?: string;
   description?: string;

@@ -1,26 +1,26 @@
 .root {
-    border-bottom: 1px var(--primary-color-600) solid;
-    margin: 5px 15px;
+  border-bottom: 1px var(--primary-color-600) solid;
+  margin: 5px 15px;
 }
 
 .author {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .image {
-    width: 35px;
-    height: 30px;
+  width: 35px;
+  height: 30px;
 }
 
 .name {
-    font-size: 20px;
-    font-weight: 400;
-    margin: 0px;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0px;
 }
 
 .content {
-    padding-left: 20px;
-    font-size: 18px;
+  padding-left: 20px;
+  font-size: 18px;
 }

@@ -1,40 +1,40 @@
 .root {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
 .movie {
-    display: flex;
-    gap: 80px;
-    border-bottom: 1px var(--primary-color-600) solid;
-    padding-left: 10px;
-    padding-bottom: 10px;
+  display: flex;
+  gap: 80px;
+  border-bottom: 1px var(--primary-color-600) solid;
+  padding-left: 10px;
+  padding-bottom: 10px;
 }
 
 .movieInfo {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .poster {
-    width: 260px;
-    height: 350px;
+  width: 260px;
+  height: 350px;
 }
 
 .title {
-    font-size: 60px;
-    margin: 0px;
-    color: var(--main-text-color);
-    font-weight: bold;
+  font-size: 60px;
+  margin: 0px;
+  color: var(--main-text-color);
+  font-weight: bold;
 }
 
 .details {
-    font-size: 20px;
-    padding-left: 40px;
-    margin: 10px 0px;
-    font-style: oblique;
+  font-size: 20px;
+  padding-left: 40px;
+  margin: 10px 0px;
+  font-style: oblique;
 }
 
 .errorLabel {
-    color: var(--errors-color);
-    font-size: 20px;
+  color: var(--errors-color);
+  font-size: 20px;
 }

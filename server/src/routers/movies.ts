@@ -23,7 +23,7 @@ import {
 import { MovieTransformer } from "../transformers/movie-transformer";
 import { UserTransformer } from "../transformers/user-transformer";
 
-import { number, z } from "zod";
+import { z } from "zod";
 import { CommentTransformer } from "../transformers/comment-transformer";
 import { ReviewTransformer } from "../transformers/review-transformer";
 import { LikeModel } from "../models/like-model";

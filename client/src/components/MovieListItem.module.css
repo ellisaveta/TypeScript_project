@@ -1,52 +1,52 @@
 .movieHeader {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 20px;
 }
 
 .movie {
-    border-bottom: 1px var(--primary-color-600) solid;
-    padding-left: 10px;
-    padding-bottom: 10px;
+  border-bottom: 1px var(--primary-color-600) solid;
+  padding-left: 10px;
+  padding-bottom: 10px;
 }
 
 .poster {
-    width: 50px;
-    height: 70px;
+  width: 50px;
+  height: 70px;
 }
 
 .title {
-    font-size: 20px;
-    color: var(--main-text-color);
-    font-weight: bold;
+  font-size: 20px;
+  color: var(--main-text-color);
+  font-weight: bold;
 }
 
 .details {
-    font-size: 17px;
-    padding-left: 20px;
-    margin: 10px 0px;
-    font-style: oblique;
+  font-size: 17px;
+  padding-left: 20px;
+  margin: 10px 0px;
+  font-style: oblique;
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 50px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 50px 0px 0px;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 .expandButton,
 .expandButtonActive {
-    width: 100px;
-    padding: 5px 10px;
+  width: 100px;
+  padding: 5px 10px;
 }
 
 .expandButtonActive {
-    background-color: var(--primary-color);
-    color: var(--primary-color-text);
+  background-color: var(--primary-color);
+  color: var(--primary-color-text);
 }

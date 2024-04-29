@@ -10,18 +10,17 @@ import { UserModel } from "../../src/models/user-model";
 const knexClient = knex(knexConfig.test);
 
 beforeAll(async () => {
-    Model.knex(knexClient);
+  Model.knex(knexClient);
 
-    await knexClient.migrate.latest();
+  await knexClient.migrate.latest();
 });
 
 beforeEach(async () => {
-    await CommentModel.query().delete();
-    await LikeModel.query().delete();
-    await MovieModel.query().delete();
-    await ReviewModel.query().delete();
-    await UserModel.query().delete();
+  await CommentModel.query().delete();
+  await LikeModel.query().delete();
+  await MovieModel.query().delete();
+  await ReviewModel.query().delete();
+  await UserModel.query().delete();
 });
 
 afterAll(async () => await knexClient.destroy());
-

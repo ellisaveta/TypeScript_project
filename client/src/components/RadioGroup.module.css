@@ -1,19 +1,19 @@
 .group {
-    font-size: 18px;
-    font-weight: bold;
-    display: flex;
-    gap: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  gap: 10px;
 }
 
 .theme {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-input[type='radio'] {
-    accent-color: var(--accent-color);
-    width: 20px;
-    height: 20px;
-    margin: 0px;
+input[type="radio"] {
+  accent-color: var(--accent-color);
+  width: 20px;
+  height: 20px;
+  margin: 0px;
 }

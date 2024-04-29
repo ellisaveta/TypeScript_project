@@ -1,23 +1,23 @@
 .form {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
 .input {
-    padding: 10px;
-    min-width: 550px;
-    border-radius: 20px;
-    font-size: 17px;
+  padding: 10px;
+  min-width: 550px;
+  border-radius: 20px;
+  font-size: 17px;
 }
 
 .post {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .errorLabel {
-    color: var(--errors-color);
-    font-size: 20px;
+  color: var(--errors-color);
+  font-size: 20px;
 }

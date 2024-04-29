@@ -1,20 +1,20 @@
 .root {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    text-align: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: end;
 }
 
 .input {
-    color: var(--main-text-color);
-    border: 2px var(--secondary-color) solid;
-    background-color: var(--secondary-color-100);
-    font-size: 17px;
-    border-radius: 10px;
-    padding: 7px 10px;
-    width: 250px;
+  color: var(--main-text-color);
+  border: 2px var(--secondary-color) solid;
+  background-color: var(--secondary-color-100);
+  font-size: 17px;
+  border-radius: 10px;
+  padding: 7px 10px;
+  width: 250px;
 }
 
 .errorLabel {
-    color: var(--errors-color);
+  color: var(--errors-color);
 }
