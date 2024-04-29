@@ -1,20 +1,20 @@
 export class LocalStorage<T> {
-    constructor(private key: string) { }
+  constructor(private key: string) {}
 
-    get() {
-        const stringValue = localStorage.getItem(this.key);
-        if (!stringValue) {
-            return undefined;
-        }
-
-        return JSON.parse(stringValue);
+  get() {
+    const stringValue = localStorage.getItem(this.key);
+    if (!stringValue) {
+      return undefined;
     }
 
-    set(value: T) {
-        localStorage.setItem(this.key, JSON.stringify(value));
-    }
+    return JSON.parse(stringValue);
+  }
 
-    clear() {
-        localStorage.removeItem(this.key);
-    }
+  set(value: T) {
+    localStorage.setItem(this.key, JSON.stringify(value));
+  }
+
+  clear() {
+    localStorage.removeItem(this.key);
+  }
 }

@@ -1,0 +1,37 @@
+.form {
+  display: grid;
+  padding: 10px;
+  align-items: center;
+  justify-items: center;
+  gap: 20px;
+}
+
+.group {
+  justify-self: end;
+  display: flex;
+}
+
+.label {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.description {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.dateField {
+  color: var(--main-text-color);
+  border: 2px var(--secondary-color) solid;
+  background-color: var(--secondary-color-100);
+  font-size: 17px;
+  border-radius: 10px !important;
+  width: 272px;
+  height: 37px;
+}
+
+.errorMessage {
+  color: var(--errors-color);
+  font-size: 20px;
+}
