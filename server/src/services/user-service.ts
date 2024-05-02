@@ -7,14 +7,14 @@ import { EmailAlreadyExistsError } from "../errors";
 export const RegistrationInputSchema = z.object({
   name: z
     .string()
-    .min(2, "Name should have atleast 2 alphabets")
+    .min(2, "Name should have at least 2 alphabets")
     .refine(
       (value) => /^[a-zA-Z]+[-'s]?[a-zA-Z ]+$/.test(value),
       "Name should contain only alphabets"
     )
     .refine(
       (value) => /^[a-zA-Z]+\s+[a-zA-Z]+$/.test(value),
-      "Please enter both firstname and lastname"
+      "Please enter both first name and last name"
     ),
   email: z.string().min(5).email("Email must be valid!"),
   password: z.string().min(8),
@@ -24,14 +24,14 @@ type RegistrationInput = z.infer<typeof RegistrationInputSchema>;
 export const ModifyUserInputSchema = z.object({
   name: z
     .string()
-    .min(2, "Name should have atleast 2 alphabets")
+    .min(2, "Name should have at least 2 alphabets")
     .refine(
       (value) => /^[a-zA-Z]+[-'s]?[a-zA-Z ]+$/.test(value),
       "Name should contain only alphabets"
     )
     .refine(
       (value) => /^[a-zA-Z]+\s+[a-zA-Z]+$/.test(value),
-      "Please enter both firstname and lastname"
+      "Please enter both first name and last name"
     )
     .optional(),
   password: z.string().min(8).optional(),

@@ -9,6 +9,7 @@ import { config } from "./config";
 import { commentRouter } from "./routers/comments";
 import { reviewRouter } from "./routers/review";
 import cors from "cors";
+import { actorRouter } from "./routers/actors";
 
 const knexClient = knex(knexConfig.development);
 Model.knex(knexClient);
@@ -41,6 +42,8 @@ app.use("/users", userRouter);
 app.use("/comments", commentRouter);
 
 app.use("/reviews", reviewRouter);
+
+app.use("/actors", actorRouter);
 
 app.listen(port);
 
