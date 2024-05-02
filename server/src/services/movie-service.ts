@@ -20,13 +20,11 @@ export const ModifyMovieInputSchema = z.object({
   director: z.string().min(2).optional(),
   mainStar: z.string().min(2).optional(),
   description: z.string().min(10).optional(),
-  releaseDate: z
-    .preprocess((value) => {
-      if (typeof value === "string" || value instanceof Date)
-        return new Date(value);
-    }, z.date())
-    .optional(),
-  poster: z.string().optional(),
+  releaseDate: z.preprocess((value) => {
+    if (typeof value === "string" || value instanceof Date)
+      return new Date(value);
+  }, z.date().optional()),
+  poster: z.string().max(255).optional(),
 });
 
 type ModifyMovieInput = z.infer<typeof ModifyMovieInputSchema>;

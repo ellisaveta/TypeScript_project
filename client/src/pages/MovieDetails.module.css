@@ -1,7 +1,3 @@
-.root {
-  margin-top: 50px;
-}
-
 .movie {
   display: flex;
   gap: 80px;
@@ -18,6 +14,12 @@
 .poster {
   width: 260px;
   height: 350px;
+}
+
+.editDelete {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .title {

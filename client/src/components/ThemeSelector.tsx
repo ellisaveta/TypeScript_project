@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useUserPreferences } from "../contexts/UserPreferencesContext";
 import { RadioGroup, RadioOption } from "./RadioGroup";
 

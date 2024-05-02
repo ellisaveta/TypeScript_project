@@ -1,60 +1,47 @@
 import { FormEvent, useState } from "react";
 import { useAsyncAction } from "../hooks/useAsyncAction";
-import { InputMovieModel, moviesService } from "../services/movies";
-import { Navigate, useNavigate } from "react-router-dom";
+import { InputMovieModel, MovieModel, moviesService } from "../services/movies";
 import { FormLayout } from "../layouts/FormLayout";
-import classes from "./AddMovie.module.css";
-import { Input } from "../components/Input";
+import classes from "./EditMovie.module.css";
+import { Input } from "./Input";
 import { fieldErrors } from "../lib/fieldError";
 import { HttpError } from "../services/http";
-import { Button } from "../components/Button";
+import { Button } from "./Button";
 import { DateField, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
-import { UserRole } from "../services/userInfoStorage";
+import dayjs from "dayjs";
 
-export function AddMovie() {
+interface Props {
+  movie: MovieModel;
+  exitEditMode: () => void;
+}
+
+export function EditMovie({ movie, exitEditMode }: Props) {
   const [input, setInput] = useState<InputMovieModel>({
-    title: undefined,
-    director: undefined,
-    mainStar: undefined,
-    description: undefined,
-    releaseDate: null,
-    poster: undefined,
+    ...movie,
+    releaseDate: movie.releaseDate ? dayjs(movie.releaseDate) : null,
   });
-
-  const user = useCurrentUser();
-
-  if (!user || user.tokenInfo.role !== UserRole.Admin) {
-    return <Navigate to="/" />;
-  }
-
-  const navigate = useNavigate();
 
   const { loading, error, trigger } = useAsyncAction(
     async (event: FormEvent) => {
       event.preventDefault();
 
-      const movie = await moviesService.addMovie(input);
+      const editedMovie = await moviesService.editMovie(movie.id, input);
 
       setInput({
-        title: undefined,
-        director: undefined,
-        mainStar: undefined,
-        description: undefined,
-        releaseDate: null,
-        poster: undefined,
+        ...editedMovie,
+        releaseDate: movie.releaseDate ? dayjs(movie.releaseDate) : null,
       });
 
-      navigate(`/movies`);
+      exitEditMode();
 
-      return movie;
+      return editedMovie;
     }
   );
 
   return (
     <FormLayout>
-      <h1>Add a new movie</h1>
+      <h1>Edit movie</h1>
       <form className={classes.form} onSubmit={trigger}>
         <div className={classes.group}>
           <label htmlFor="title" className={classes.label}>
@@ -137,12 +124,12 @@ export function AddMovie() {
             type="button"
             variant="accent"
             disabled={loading}
-            onClick={() => navigate(-1)}
+            onClick={exitEditMode}
           >
             Cancel
           </Button>
           <Button variant="accent" disabled={loading} type="submit">
-            {loading ? <>Loading...</> : <>Add movie</>}
+            {loading ? <>Loading...</> : <>Edit movie</>}
           </Button>
         </div>
       </form>

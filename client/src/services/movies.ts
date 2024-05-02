@@ -52,7 +52,7 @@ interface GetMoviesResponse {
 class MoviesService {
   private http = new HttpService();
 
-  async getById(movieId: number) {
+  async getById(movieId: string) {
     const body = await this.http.get<{ movie: MovieModel }>(
       `/movies/${movieId}/info`
     );
@@ -77,7 +77,19 @@ class MoviesService {
     return body;
   }
 
-  async addComment(movieId: number, content: string) {
+  async editMovie(movieId: string, input: InputMovieModel) {
+    const body = await this.http.patch<MovieModel>(`/movies/${movieId}`, {
+      body: input,
+    });
+    return body;
+  }
+
+  async deleteMovie(movieId: string) {
+    const body = await this.http.delete<MovieModel>(`/movies/${movieId}`, {});
+    return body;
+  }
+
+  async addComment(movieId: string, content: string) {
     const body = await this.http.post<CommentModel>(
       `/movies/${movieId}/comment`,
       {
@@ -87,7 +99,7 @@ class MoviesService {
     return body;
   }
 
-  async addLike(movieId: number) {
+  async addLike(movieId: string) {
     const body = await this.http.post<LikeModel>(`/movies/${movieId}/like`, {});
     return body;
   }

@@ -28,7 +28,7 @@ export function AddLike({ movie, onLike }: AddLikeProps) {
   const { trigger, error } = useAsyncAction(async (event: FormEvent) => {
     event.preventDefault();
 
-    await moviesService.addLike(Number(movie.id));
+    await moviesService.addLike(movie.id);
 
     setIsLiked(!isLiked);
     onLike();

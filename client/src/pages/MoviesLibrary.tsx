@@ -4,9 +4,10 @@ import { useAsync } from "../hooks/useAsync";
 import { ListMoviesView } from "../components/ListMoviesView";
 import classes from "./MoviesLibrary.module.css";
 import { MovieModel, moviesService } from "../services/movies";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
+import { BackButton } from "../components/BackButton";
 
 export interface MoviesLibraryProps {
   movies: MovieModel[];
@@ -14,6 +15,7 @@ export interface MoviesLibraryProps {
 
 export function MoviesLibrary() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const query = searchParams.get("query") ?? "";
   const pageQuery = searchParams.get("page") ?? "1";
   const PAGE_SIZE = 6;
@@ -68,6 +70,8 @@ export function MoviesLibrary() {
 
   return (
     <>
+      <BackButton goBack={() => navigate(-1)} />
+
       <div className={classes.flex}>
         <h1 className={classes.header}>All movies:</h1>
         <Input
