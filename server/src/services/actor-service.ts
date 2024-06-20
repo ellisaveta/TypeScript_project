@@ -64,7 +64,7 @@ export class ActorService {
         "ilike",
         `%${searchText?.replace(/%/g, "%")?.replace(/_/g, "_")}%`
       )
-      .orderBy("title", "ASC")
+      .orderBy("name", "ASC")
       .page(pageNumber - 1, size);
   }
 

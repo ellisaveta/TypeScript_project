@@ -12,12 +12,13 @@ import { DateField, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { UserRole } from "../services/userInfoStorage";
+import { MainStarInput } from "../components/MainStarInput";
 
 export function AddMovie() {
   const [input, setInput] = useState<InputMovieModel>({
     title: undefined,
     director: undefined,
-    mainStar: undefined,
+    mainStar: null,
     description: undefined,
     releaseDate: null,
     poster: undefined,
@@ -40,7 +41,7 @@ export function AddMovie() {
       setInput({
         title: undefined,
         director: undefined,
-        mainStar: undefined,
+        mainStar: null,
         description: undefined,
         releaseDate: null,
         poster: undefined,
@@ -84,13 +85,7 @@ export function AddMovie() {
           <label htmlFor="mainStar" className={classes.label}>
             Main Star:{" "}
           </label>
-          <Input
-            type="text"
-            id="mainStar"
-            errors={fieldErrors(error, "mainStar")}
-            value={input.mainStar ?? ""}
-            onChange={(value) => setInput({ ...input, mainStar: value })}
-          />
+          <MainStarInput value={input.mainStar} setValue={setInput} />
         </div>
         <div className={classes.group}>
           <label htmlFor="description" className={classes.label}>

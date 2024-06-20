@@ -4,7 +4,7 @@ import { z } from "zod";
 export const AddMovieInputSchema = z.object({
   title: z.string({ required_error: "Title is required!" }),
   director: z.string().min(2).optional(),
-  mainStar: z.string().min(2).optional(),
+  mainStar: z.number().optional(),
   description: z.string().min(10).optional(),
   releaseDate: z.preprocess((value) => {
     if (typeof value === "string" || value instanceof Date)
@@ -18,7 +18,7 @@ type AddMovieInput = z.infer<typeof AddMovieInputSchema>;
 export const ModifyMovieInputSchema = z.object({
   title: z.string().optional(),
   director: z.string().min(2).optional(),
-  mainStar: z.string().min(2).optional(),
+  mainStar: z.number().optional(),
   description: z.string().min(10).optional(),
   releaseDate: z.preprocess((value) => {
     if (typeof value === "string" || value instanceof Date)

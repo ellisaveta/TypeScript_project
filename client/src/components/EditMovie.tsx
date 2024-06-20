@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useAsyncAction } from "../hooks/useAsyncAction";
 import { InputMovieModel, MovieModel, moviesService } from "../services/movies";
 import { FormLayout } from "../layouts/FormLayout";
@@ -10,6 +10,10 @@ import { Button } from "./Button";
 import { DateField, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
+import { MainStarInput } from "./MainStarInput";
+import { useAsync } from "../hooks/useAsync";
+import { actorsService } from "../services/actors";
+import { omit } from "lodash";
 
 interface Props {
   movie: MovieModel;
@@ -17,32 +21,52 @@ interface Props {
 }
 
 export function EditMovie({ movie, exitEditMode }: Props) {
+  const { data: initialActor } = useAsync(
+    async () =>
+      movie.mainStar ? actorsService.getById(movie.mainStar) : undefined,
+    [movie.mainStar]
+  );
+
   const [input, setInput] = useState<InputMovieModel>({
-    ...movie,
+    ...omit(movie, ["mainStar", "releaseDate"]),
+    mainStar: null,
     releaseDate: movie.releaseDate ? dayjs(movie.releaseDate) : null,
   });
 
-  const { loading, error, trigger } = useAsyncAction(
-    async (event: FormEvent) => {
-      event.preventDefault();
-
-      const editedMovie = await moviesService.editMovie(movie.id, input);
-
-      setInput({
-        ...editedMovie,
-        releaseDate: movie.releaseDate ? dayjs(movie.releaseDate) : null,
-      });
-
-      exitEditMode();
-
-      return editedMovie;
-    }
+  useEffect(
+    () =>
+      setInput((current) => ({
+        ...omit(current, "mainStar"),
+        mainStar: initialActor
+          ? { name: initialActor?.name, id: initialActor?.id }
+          : null,
+      })),
+    [initialActor]
   );
+
+  const {
+    loading,
+    error,
+    trigger: editMovie,
+  } = useAsyncAction(async (event: FormEvent) => {
+    event.preventDefault();
+
+    const editedMovie = await moviesService.editMovie(movie.id, input);
+
+    // setInput({
+    //     ...editedMovie,
+    //     releaseDate: movie.releaseDate ? dayjs(movie.releaseDate) : null,
+    //   });
+
+    exitEditMode();
+
+    return editedMovie;
+  });
 
   return (
     <FormLayout>
       <h1>Edit movie</h1>
-      <form className={classes.form} onSubmit={trigger}>
+      <form className={classes.form} onSubmit={editMovie}>
         <div className={classes.group}>
           <label htmlFor="title" className={classes.label}>
             Title:{" "}
@@ -71,13 +95,7 @@ export function EditMovie({ movie, exitEditMode }: Props) {
           <label htmlFor="mainStar" className={classes.label}>
             Main Star:{" "}
           </label>
-          <Input
-            type="text"
-            id="mainStar"
-            errors={fieldErrors(error, "mainStar")}
-            value={input.mainStar ?? ""}
-            onChange={(value) => setInput({ ...input, mainStar: value })}
-          />
+          <MainStarInput value={input.mainStar} setValue={setInput} />
         </div>
         <div className={classes.group}>
           <label htmlFor="description" className={classes.label}>

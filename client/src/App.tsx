@@ -11,7 +11,6 @@ import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import { UserPreferencesProvider } from "./contexts/UserPreferencesContext";
 import { MovieDetails } from "./pages/MovieDetails";
 import { AddMovie } from "./pages/AddMovie";
-import { EditMovie } from "./components/EditMovie";
 
 export function App() {
   return (

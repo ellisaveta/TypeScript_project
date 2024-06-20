@@ -8,7 +8,7 @@ class MovieModel extends BaseModel {
   static readonly tableName = "movies";
   title!: string;
   director!: string | null;
-  mainStar!: string | null;
+  mainStar!: number | null;
   description!: string | null;
   releaseDate!: Date | null;
   poster!: string | null;

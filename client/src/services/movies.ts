@@ -1,11 +1,18 @@
 import { Dayjs } from "dayjs";
+import { omit } from "lodash";
 import { UserModel } from "./auth";
 import { HttpService } from "./http";
+
+export interface MainStarType {
+  inputValue?: string;
+  id: number;
+  name: string;
+}
 
 export interface InputMovieModel {
   title?: string;
   director?: string;
-  mainStar?: string;
+  mainStar: MainStarType | null;
   description?: string;
   releaseDate: Dayjs | null;
   poster?: string;
@@ -15,7 +22,7 @@ export interface MovieModel {
   id: string;
   title: string;
   director?: string;
-  mainStar?: string;
+  mainStar?: number;
   description?: string;
   releaseDate?: Date;
   poster: string;
@@ -73,13 +80,15 @@ class MoviesService {
   }
 
   async addMovie(input: InputMovieModel) {
-    const body = await this.http.post<MovieModel>("/movies", { body: input });
+    const body = await this.http.post<MovieModel>("/movies", {
+      body: { ...omit(input, "mainStar"), mainStar: input.mainStar?.id },
+    });
     return body;
   }
 
   async editMovie(movieId: string, input: InputMovieModel) {
     const body = await this.http.patch<MovieModel>(`/movies/${movieId}`, {
-      body: input,
+      body: { ...omit(input, "mainStar"), mainStar: input.mainStar?.id },
     });
     return body;
   }
