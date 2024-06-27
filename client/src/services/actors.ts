@@ -44,6 +44,18 @@ class ActorsService {
     const body = await this.http.post<ActorModel>("/actors", { body: input });
     return body;
   }
+
+  async editActor(actorId: number, input: InputActorModel) {
+    const body = await this.http.patch<ActorModel>(`/actors/${actorId}`, {
+      body: input,
+    });
+    return body;
+  }
+
+  async deleteActor(actorId: string) {
+    const body = await this.http.delete<ActorModel>(`/actors/${actorId}`, {});
+    return body;
+  }
 }
 
 export const actorsService = new ActorsService();

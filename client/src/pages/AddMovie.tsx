@@ -36,7 +36,12 @@ export function AddMovie() {
     async (event: FormEvent) => {
       event.preventDefault();
 
-      const movie = await moviesService.addMovie(input);
+      const movie = await moviesService.addMovie({
+        ...input,
+        director: input.director !== "" ? input.director : undefined,
+        description: input.description !== "" ? input.description : undefined,
+        poster: input.poster !== "" ? input.poster : undefined,
+      });
 
       setInput({
         title: undefined,
@@ -56,7 +61,7 @@ export function AddMovie() {
   return (
     <FormLayout>
       <h1>Add a new movie</h1>
-      <form className={classes.form} onSubmit={trigger}>
+      <form className={classes.form}>
         <div className={classes.group}>
           <label htmlFor="title" className={classes.label}>
             Title:{" "}
@@ -106,9 +111,13 @@ export function AddMovie() {
           </label>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DateField
+              id="releaseDate"
               value={input.releaseDate}
               InputProps={{ className: classes.dateField }}
               onChange={(value) => setInput({ ...input, releaseDate: value })}
+              sx={{
+                "& .MuiOutlinedInput-root": { color: "var(--main-text-color)" },
+              }}
             />
           </LocalizationProvider>
         </div>
@@ -136,7 +145,7 @@ export function AddMovie() {
           >
             Cancel
           </Button>
-          <Button variant="accent" disabled={loading} type="submit">
+          <Button variant="accent" disabled={loading} onClick={trigger}>
             {loading ? <>Loading...</> : <>Add movie</>}
           </Button>
         </div>

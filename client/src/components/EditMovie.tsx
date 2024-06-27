@@ -51,12 +51,12 @@ export function EditMovie({ movie, exitEditMode }: Props) {
   } = useAsyncAction(async (event: FormEvent) => {
     event.preventDefault();
 
-    const editedMovie = await moviesService.editMovie(movie.id, input);
-
-    // setInput({
-    //     ...editedMovie,
-    //     releaseDate: movie.releaseDate ? dayjs(movie.releaseDate) : null,
-    //   });
+    const editedMovie = await moviesService.editMovie(movie.id, {
+      ...input,
+      director: input.director !== "" ? input.director : undefined,
+      description: input.description !== "" ? input.description : undefined,
+      poster: input.poster !== "" ? input.poster : undefined,
+    });
 
     exitEditMode();
 
@@ -66,7 +66,7 @@ export function EditMovie({ movie, exitEditMode }: Props) {
   return (
     <FormLayout>
       <h1>Edit movie</h1>
-      <form className={classes.form} onSubmit={editMovie}>
+      <form className={classes.form}>
         <div className={classes.group}>
           <label htmlFor="title" className={classes.label}>
             Title:{" "}
@@ -116,6 +116,7 @@ export function EditMovie({ movie, exitEditMode }: Props) {
           </label>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DateField
+              id="releaseDate"
               value={input.releaseDate}
               InputProps={{ className: classes.dateField }}
               onChange={(value) => setInput({ ...input, releaseDate: value })}
@@ -146,7 +147,7 @@ export function EditMovie({ movie, exitEditMode }: Props) {
           >
             Cancel
           </Button>
-          <Button variant="accent" disabled={loading} type="submit">
+          <Button variant="accent" disabled={loading} onClick={editMovie}>
             {loading ? <>Loading...</> : <>Edit movie</>}
           </Button>
         </div>

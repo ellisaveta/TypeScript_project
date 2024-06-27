@@ -13,9 +13,11 @@ import {
 } from "../middlewares/request-handler";
 import { ActorTransformer } from "../transformers/actor-transformer";
 import { adminMiddleware } from "../middlewares/admin-middleware";
+import { MovieService } from "../services/movie-service";
 
 const actorRouter = Router();
 const actorService = new ActorService();
+const movieService = new MovieService();
 const actorTransformer = new ActorTransformer();
 
 const IdInputSchema = z.object({
@@ -103,6 +105,18 @@ actorRouter.delete(
   requestHandler(async (req) => {
     const { id } = IdInputSchema.parse(req.params);
     await findActorWithThatId(id);
+
+    const moviesWithActor = await movieService.searchMoviesByActor(id);
+
+    const updatedmovies = await Promise.all(
+      moviesWithActor.map((movie) =>
+        movieService.update(movie.id, {
+          mainStar: undefined,
+        })
+      )
+    );
+
+    console.log(123, updatedmovies);
 
     const deletedActor = await actorService.deleteById(id);
     return { deletedActor };

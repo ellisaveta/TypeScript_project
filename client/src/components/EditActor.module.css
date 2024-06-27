@@ -1,0 +1,32 @@
+.form {
+  display: grid;
+  padding: 10px;
+  align-items: center;
+  justify-items: center;
+  gap: 20px;
+}
+
+.group {
+  justify-self: end;
+  display: flex;
+}
+
+.actions {
+  display: flex;
+  gap: 20px;
+}
+
+.label {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.bio {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.errorMessage {
+  color: var(--errors-color);
+  font-size: 20px;
+}

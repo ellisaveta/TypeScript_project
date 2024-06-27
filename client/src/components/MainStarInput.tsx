@@ -1,7 +1,5 @@
 import {
   Autocomplete,
-  Button,
-  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
@@ -15,6 +13,8 @@ import {
   TextField,
   createFilterOptions,
 } from "@mui/material";
+import classes from "./MainStarInput.module.css";
+import { Button } from "../components/Button";
 import { InputMovieModel, MainStarType } from "../services/movies";
 import { Fragment, useCallback, useState } from "react";
 import { useAsync } from "../hooks/useAsync";
@@ -63,24 +63,27 @@ export function MainStarInput({ value, setValue }: Props) {
     reload();
   }, []);
 
-  const { perform: handleSubmit } = useAsyncAction(
-    async (event: React.FormEvent<HTMLFormElement>) => {
-      const newActor = await actorsService.addActor(dialogValue);
+  const { perform: handleSubmit } = useAsyncAction(async () => {
+    const newActor = await actorsService.addActor({
+      ...dialogValue,
+      bio: dialogValue.bio !== "" ? dialogValue.bio : undefined,
+      picture: dialogValue.picture !== "" ? dialogValue.picture : undefined,
+    });
 
-      setValue((current) => ({
-        ...current,
-        mainStar: {
-          name: newActor.name,
-          id: newActor.id,
-        },
-      }));
-      handleClose();
-    }
-  );
+    setValue((current) => ({
+      ...current,
+      mainStar: {
+        name: newActor.name,
+        id: newActor.id,
+      },
+    }));
+    handleClose();
+  });
 
   return (
     <Fragment>
       <Autocomplete
+        id="mainStar"
         value={value}
         onChange={(event, newValue) => {
           if (typeof newValue === "string") {
@@ -137,15 +140,23 @@ export function MainStarInput({ value, setValue }: Props) {
         clearOnBlur
         handleHomeEndKeys
         renderOption={(props, option) => <li {...props}>{option.name}</li>}
-        sx={{ width: 300 }}
+        sx={{
+          width: 270,
+          "& .MuiOutlinedInput-root": {
+            borderRadius: "10px !important",
+            color: "var(--main-text-color)",
+            border: "2px var(--secondary-color) solid",
+            backgroundColor: "var(--secondary-color-100)",
+          },
+        }}
         freeSolo
         renderInput={(params) => <TextField {...params} required />}
       />
-      <Dialog open={open} onClose={handleClose}>
-        <form onSubmit={handleSubmit}>
+      <Dialog open={open} onClose={handleClose} sx={{ padding: "10px" }}>
+        <form className={classes.form}>
           <DialogTitle>Add a new actor</DialogTitle>
           <DialogContent sx={{ display: "flex", flexDirection: "column" }}>
-            <DialogContentText>
+            <DialogContentText sx={{ color: "var(--main-text-color)" }}>
               You didn`t find the actor you are searching for? Please, add it!
             </DialogContentText>
             <TextField
@@ -162,9 +173,15 @@ export function MainStarInput({ value, setValue }: Props) {
               label="Name"
               type="text"
               variant="standard"
+              sx={{
+                "& .MuiInput-root": { color: "var(--main-text-color)" },
+                "& .MuiInputLabel-root": { color: "var(--main-text-color)" },
+              }}
             />
             <FormControl>
-              <FormLabel>Gender</FormLabel>
+              <FormLabel sx={{ color: "var(--main-text-color)" }}>
+                Gender
+              </FormLabel>
               <RadioGroup
                 value={dialogValue.gender ?? "male"}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
@@ -176,12 +193,12 @@ export function MainStarInput({ value, setValue }: Props) {
               >
                 <FormControlLabel
                   value="male"
-                  control={<Radio />}
+                  control={<Radio sx={{ color: "var(--main-text-color)" }} />}
                   label="Male"
                 />
                 <FormControlLabel
                   value="female"
-                  control={<Radio />}
+                  control={<Radio sx={{ color: "var(--main-text-color)" }} />}
                   label="Female"
                 />
               </RadioGroup>
@@ -201,6 +218,10 @@ export function MainStarInput({ value, setValue }: Props) {
               label="Bio"
               type="text"
               variant="standard"
+              sx={{
+                "& .MuiInput-root": { color: "var(--main-text-color)" },
+                "& .MuiInputLabel-root": { color: "var(--main-text-color)" },
+              }}
             />
             <TextField
               margin="dense"
@@ -216,11 +237,19 @@ export function MainStarInput({ value, setValue }: Props) {
               label="Picture URL"
               type="text"
               variant="standard"
+              sx={{
+                "& .MuiInput-root": { color: "var(--main-text-color)" },
+                "& .MuiInputLabel-root": { color: "var(--main-text-color)" },
+              }}
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button type="submit">Add</Button>
+            <Button variant="accent" type="button" onClick={handleClose}>
+              Cancel
+            </Button>
+            <Button variant="accent" type="button" onClick={handleSubmit}>
+              Add
+            </Button>
           </DialogActions>
         </form>
       </Dialog>

@@ -3,6 +3,9 @@ import { ActorModel } from "../models/actor-model";
 
 const GENDER_VALUES = ["male", "female"] as const;
 
+const DEFAULT_PICTURE =
+  "https://www.shutterstock.com/shutterstock/photos/1229859850/display_1500/stock-vector-avatar-man-icon-profile-placeholder-anonymous-user-male-no-photo-web-template-default-user-1229859850.jpg";
+
 export const AddActorInputSchema = z.object({
   name: z
     .string()
@@ -70,6 +73,11 @@ export class ActorService {
 
   async update(id: number, data: ModifyActorInput) {
     const actor = await ActorModel.query().findById(id);
-    return await actor?.$query().patchAndFetch({ ...data });
+    return await actor?.$query().patchAndFetch({
+      name: data.name,
+      gender: data.gender,
+      bio: data.bio ?? null,
+      picture: data.picture ?? DEFAULT_PICTURE,
+    });
   }
 }

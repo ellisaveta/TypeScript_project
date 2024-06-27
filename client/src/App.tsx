@@ -11,6 +11,7 @@ import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import { UserPreferencesProvider } from "./contexts/UserPreferencesContext";
 import { MovieDetails } from "./pages/MovieDetails";
 import { AddMovie } from "./pages/AddMovie";
+import { ActorDetails } from "./pages/ActorDetails";
 
 export function App() {
   return (
@@ -41,6 +42,10 @@ export function App() {
               <Route
                 path="/movies/:id"
                 element={<PageLayout element={<MovieDetails />} />}
+              />
+              <Route
+                path="/actors/:id"
+                element={<PageLayout element={<ActorDetails />} />}
               />
             </Route>
             <Route path="*" element={<Navigate to="/" />} />

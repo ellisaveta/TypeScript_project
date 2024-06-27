@@ -21,7 +21,7 @@ export function AddComment({ movieId, onComment }: AddCommentProps) {
     error,
   } = useAsyncAction(async (event: FormEvent) => {
     event.preventDefault();
-    await moviesService.addComment(Number(movieId), content);
+    await moviesService.addComment(movieId, content);
     setContent("");
     onComment();
   });
@@ -29,6 +29,7 @@ export function AddComment({ movieId, onComment }: AddCommentProps) {
   return (
     <form onSubmit={addComment} className={classes.form}>
       <Input
+        id="AddComment-input"
         placeholder="Write a comment..."
         multiline
         errors={fieldErrors(error, "content")}

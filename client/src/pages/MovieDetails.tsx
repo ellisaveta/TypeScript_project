@@ -13,9 +13,10 @@ import { UserRole } from "../services/userInfoStorage";
 import { DeleteForever, Edit } from "@mui/icons-material";
 import { useCallback, useState } from "react";
 import { useAsyncAction } from "../hooks/useAsyncAction";
-import { IconButton } from "@mui/material";
+import { IconButton, Link } from "@mui/material";
 import { EditMovie } from "../components/EditMovie";
 import { BackButton } from "../components/BackButton";
+import { actorsService } from "../services/actors";
 
 export function MovieDetails() {
   const user = useCurrentUser();
@@ -28,19 +29,26 @@ export function MovieDetails() {
   const [inEditMode, setInEditMode] = useState(false);
 
   const {
-    data: movie,
+    data: movieInfo,
     loading,
     error,
     reload,
-  } = useAsync(() => {
+  } = useAsync(async () => {
     if (!id) {
       throw new Error("Movie id is missing!");
     }
-    return moviesService.getById(id);
+
+    const movie = await moviesService.getById(id);
+
+    const mainStar = movie.mainStar
+      ? await actorsService.getById(movie.mainStar)
+      : undefined;
+
+    return { ...movie, mainStarName: mainStar?.name };
   }, [id]);
 
-  const releaseDate = movie?.releaseDate
-    ? new Date(movie.releaseDate)
+  const releaseDate = movieInfo?.releaseDate
+    ? new Date(movieInfo.releaseDate)
     : undefined;
 
   const onEdit = useCallback(() => {
@@ -65,11 +73,11 @@ export function MovieDetails() {
     }
   );
 
-  if (loading && !movie) {
+  if (loading && !movieInfo) {
     return <h1>Loading...</h1>;
   }
 
-  if (!movie && !loading && error instanceof HttpError) {
+  if (!movieInfo && !loading && error instanceof HttpError) {
     return <h1>No movie found with id: {id}!</h1>;
   }
 
@@ -77,16 +85,20 @@ export function MovieDetails() {
     return <span className={classes.errorLabel}>Something went wrong!</span>;
   }
 
-  return movie && inEditMode ? (
-    <EditMovie movie={movie} exitEditMode={exitEditMode} />
-  ) : movie ? (
+  return movieInfo && inEditMode ? (
+    <EditMovie movie={movieInfo} exitEditMode={exitEditMode} />
+  ) : movieInfo ? (
     <div>
       <BackButton goBack={() => navigate(-1)} />
       <div className={classes.movie}>
-        <img src={movie.poster} alt="Movie poster" className={classes.poster} />
+        <img
+          src={movieInfo.poster}
+          alt="Movie poster"
+          className={classes.poster}
+        />
         <div className={classes.movieInfo}>
           <div className={classes.editDelete}>
-            <p className={classes.title}>{movie.title}</p>
+            <p className={classes.title}>{movieInfo.title}</p>
             {userIsAdmin ? (
               <>
                 <IconButton onClick={onEdit}>
@@ -98,21 +110,34 @@ export function MovieDetails() {
               </>
             ) : null}
           </div>
-          <AddLike movie={movie} onLike={reload} />
+          <AddLike movie={movieInfo} onLike={reload} />
           <div className={classes.details}>
-            {movie.director ? <p>Director: {movie.director}</p> : null}
-            {movie.mainStar ? <p>Main star: {movie.mainStar}</p> : null}
-            {movie.description ? <p>Description: {movie.description}</p> : null}
+            {movieInfo.director ? <p>Director: {movieInfo.director}</p> : null}
+            {movieInfo.mainStar ? (
+              <p>
+                Main star:{" "}
+                <Link href={`/actors/${movieInfo.mainStar}`}>
+                  {movieInfo.mainStarName}
+                </Link>
+              </p>
+            ) : null}
+            {movieInfo.description ? (
+              <p>Description: {movieInfo.description}</p>
+            ) : null}
             {releaseDate ? (
               <p>Release date: {releaseDate.toDateString()}</p>
             ) : null}
-            {movie.likedBy ? <Likes count={movie.likedBy.length} /> : null}
+            {movieInfo.likedBy ? (
+              <Likes count={movieInfo.likedBy.length} />
+            ) : null}
           </div>
         </div>
       </div>
-      {movie.comments?.length ? <CommentsSection movie={movie} /> : null}
-      {movie.reviews?.length ? <ReviewsSection movie={movie} /> : null}
-      <AddComment movieId={movie.id} onComment={reload} />
+      {movieInfo.comments?.length ? (
+        <CommentsSection movie={movieInfo} />
+      ) : null}
+      {movieInfo.reviews?.length ? <ReviewsSection movie={movieInfo} /> : null}
+      <AddComment movieId={movieInfo.id} onComment={reload} />
     </div>
   ) : null;
 }

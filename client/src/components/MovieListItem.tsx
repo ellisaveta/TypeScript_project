@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { MovieModel } from "../services/movies";
 import { Button } from "./Button";
 import classes from "./MovieListItem.module.css";
+import { useAsync } from "../hooks/useAsync";
+import { actorsService } from "../services/actors";
 
 interface MovieListItemProps {
   movie: MovieModel;
@@ -13,6 +15,14 @@ export function MovieListItem({ movie }: MovieListItemProps) {
   const releaseDate = movie.releaseDate
     ? new Date(movie.releaseDate)
     : undefined;
+
+  const { data: mainStarName } = useAsync(async () => {
+    if (!movie.mainStar) {
+      return;
+    }
+
+    return (await actorsService.getById(movie.mainStar)).name;
+  }, [movie.mainStar]);
 
   return (
     <div className={classes.movie}>
@@ -38,7 +48,7 @@ export function MovieListItem({ movie }: MovieListItemProps) {
       {isExpanded ? (
         <div className={classes.details}>
           {movie.director ? <p>Director: {movie.director}</p> : null}
-          {movie.mainStar ? <p>Main star: {movie.mainStar}</p> : null}
+          {mainStarName ? <p>Main star: {mainStarName}</p> : null}
           {releaseDate ? (
             <p>Release date: {releaseDate.toDateString()}</p>
           ) : null}

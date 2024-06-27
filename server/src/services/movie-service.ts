@@ -1,6 +1,9 @@
 import { MovieModel } from "../models/movie-model";
 import { z } from "zod";
 
+const DEFAULT_POSTER =
+  "https://thumbs.dreamstime.com/z/no-image-available-icon-flat-vector-illustration-132483587.jpg";
+
 export const AddMovieInputSchema = z.object({
   title: z.string({ required_error: "Title is required!" }),
   director: z.string().min(2).optional(),
@@ -96,15 +99,19 @@ export class MovieService {
     return await MovieModel.query().where("director", "like", director);
   }
 
+  async searchMoviesByActor(actorId: number) {
+    return MovieModel.query().where({ mainStar: actorId });
+  }
+
   async update(id: number, data: ModifyMovieInput) {
     const movie = await MovieModel.query().findById(id);
     return await movie?.$query().patchAndFetch({
       title: data?.title,
-      director: data?.director,
-      mainStar: data?.mainStar,
-      description: data?.description,
-      releaseDate: data?.releaseDate,
-      poster: data?.poster,
+      director: data?.director ?? null,
+      mainStar: data?.mainStar ?? null,
+      description: data?.description ?? null,
+      releaseDate: data?.releaseDate ?? null,
+      poster: data?.poster ?? DEFAULT_POSTER,
     });
   }
 }
