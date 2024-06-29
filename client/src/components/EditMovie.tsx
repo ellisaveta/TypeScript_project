@@ -53,6 +53,7 @@ export function EditMovie({ movie, exitEditMode }: Props) {
 
     const editedMovie = await moviesService.editMovie(movie.id, {
       ...input,
+      title: input.title !== "" ? input.title : undefined,
       director: input.director !== "" ? input.director : undefined,
       description: input.description !== "" ? input.description : undefined,
       poster: input.poster !== "" ? input.poster : undefined,

@@ -38,6 +38,7 @@ export function AddMovie() {
 
       const movie = await moviesService.addMovie({
         ...input,
+        title: input.title !== "" ? input.title : undefined,
         director: input.director !== "" ? input.director : undefined,
         description: input.description !== "" ? input.description : undefined,
         poster: input.poster !== "" ? input.poster : undefined,
