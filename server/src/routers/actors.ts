@@ -108,15 +108,13 @@ actorRouter.delete(
 
     const moviesWithActor = await movieService.searchMoviesByActor(id);
 
-    const updatedmovies = await Promise.all(
+    await Promise.all(
       moviesWithActor.map((movie) =>
         movieService.update(movie.id, {
           mainStar: undefined,
         })
       )
     );
-
-    console.log(123, updatedmovies);
 
     const deletedActor = await actorService.deleteById(id);
     return { deletedActor };
