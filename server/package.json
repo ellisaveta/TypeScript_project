@@ -11,9 +11,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@gitlab.asteasolutions.net:822/school-spring-2023/dev/edocheva.git"
+    "url": "https://github.com/ellisaveta/TypeScript_project"
   },
-  "author": "edocheva",
+  "author": "ellisaveta",
   "license": "ISC",
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
